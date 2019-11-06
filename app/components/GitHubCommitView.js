@@ -3,28 +3,32 @@ import { StyleSheet, Text, View } from 'react-native';
 import { getGitHubRepositoryCommits } from '../services/GitHubService';
 
 export default class GitHubCommitView extends Component {
-
+    
     constructor(props){
         super(props);
         this.state={
-            commitData:[],
-            error: false
+            commitData:[]
         }
     }
 
     componentDidMount(){
-        const data = getGitHubRepositoryCommits('ramanurs/githubreader');
+        /*
+         const data = getGitHubRepositoryCommits('repos/hazelcast/hazelcast');
+        console.log("Got Commit Data : "+ JSON.stringify(data));
         this.setState({ commitData: data })
+*/
+        fetch('https://api.github.com/repos/ramanurs/githubreader/commits')
+        .then(res => res.json())
+        .then((data) => {
+            this.setState({ commitData: data })
+        })
+        .catch(console.log)
+         
     }
 
     render() {
-       return(
-           <View>
-               <Text>some text</Text>
-           </View>
-       )
-
-     /*   return (this.state.commitData.map(item =>
+        console.log("data : "+this.state.commitData);
+       return (this.state.commitData.map(item =>
         <>
             <Text style={styles.author}>
                 Author : {item.commit.author.name}
@@ -38,10 +42,9 @@ export default class GitHubCommitView extends Component {
 
             <Text style={styles.description}>
                 ______________________________________________
-
             </Text>
         </>
-    )); */
+    )); 
     }
 }
 

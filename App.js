@@ -8,11 +8,10 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title="GitHub Commit View" />
-    
+        <View style={styles.body}>
         <GitHubCommitView />
         </View>
-          
+      </View>    
     );
   }
 }
@@ -22,5 +21,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center'
+  },
+  header: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#FFCE00',
+    marginLeft: 0,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });

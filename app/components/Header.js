@@ -11,15 +11,18 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
   header: {
+    flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#FFCE00',
-    height: 80,
+    marginLeft: 0,
     alignItems: 'center',
     justifyContent: 'center'
   },
     title: {
         color: 'red',
         fontSize: 18,
-        marginTop: 25,
+        marginTop: 10,
+        marginLeft: 0,
         fontWeight: '600',
         textTransform: 'capitalize'
     }
