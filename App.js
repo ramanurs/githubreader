@@ -31,7 +31,7 @@ export default class App extends Component {
           <Card>
             <CardItem>
               <Body>
-                <GitHubRepoSearchView repo={this.state.DEFAULT_REPO}/>
+                <GitHubRepoSearchView repo={this.state.DEFAULT_REPO} loadCommitData={GitHubRepoSearchView.loadData}/>
               </Body>
             </CardItem>
             <CardItem>

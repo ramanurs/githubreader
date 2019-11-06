@@ -13,7 +13,12 @@ export default class GitHubCommitView extends Component {
     }
 
     componentDidMount(){
-         getGitHubRepositoryCommits(this.state.DEFAULT_REPO).then((res) => {
+        this.props.onRef(this);
+         this.loadData(this.state.DEFAULT_REPO);
+    }
+
+    loadData(repo){
+        getGitHubRepositoryCommits(repo).then((res) => {
             this.setState({ commitData: res })
         })
     }

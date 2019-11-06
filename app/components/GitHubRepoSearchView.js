@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
+import GitHubCommitView from './GitHubCommitView';
 
 export default class GitHubRepoSearchView extends Component {
     constructor(props){
@@ -16,7 +17,8 @@ export default class GitHubRepoSearchView extends Component {
         });
       }
       handleSubmit() {
-        this.props.handleRepoSearch(this.state.DEFAULT_REPO);
+          console.log(this.props);
+        this.props.loadCommitData(this.state.DEFAULT_REPO);
       }
 
     render() {
