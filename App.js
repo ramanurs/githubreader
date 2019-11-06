@@ -12,10 +12,11 @@ export default class App extends Component {
     this.state={
       DEFAULT_REPO: 'repos/ramanurs/githubreader'
     }
+    this.handleRepoSearch = this.handleRepoSearch.bind(this);
   }
 
-  handleRepoSearch(){
-
+  handleRepoSearch(repo){
+    this.setState({DEFAULT_REPO: repo});
   }
 
   render() {
@@ -31,7 +32,7 @@ export default class App extends Component {
           <Card>
             <CardItem>
               <Body>
-                <GitHubRepoSearchView repo={this.state.DEFAULT_REPO} loadCommitData={GitHubRepoSearchView.loadData}/>
+                <GitHubRepoSearchView repo={this.state.DEFAULT_REPO} loadCommitData={this.handleRepoSearch}/>
               </Body>
             </CardItem>
             <CardItem>
