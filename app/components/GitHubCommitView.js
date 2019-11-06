@@ -12,18 +12,21 @@ export default class GitHubCommitView extends Component {
     }
 
     componentDidMount(){
-        /*
-         const data = getGitHubRepositoryCommits('repos/hazelcast/hazelcast');
-        console.log("Got Commit Data : "+ JSON.stringify(data));
-        this.setState({ commitData: data })
-*/
+        
+         getGitHubRepositoryCommits('repos/ramanurs/githubreader').then((res) => {
+            this.setState({ commitData: res })
+        })
+
+       // this.setState({ commitData: data })
+        
+/*
         fetch('https://api.github.com/repos/ramanurs/githubreader/commits')
         .then(res => res.json())
         .then((data) => {
             this.setState({ commitData: data })
         })
         .catch(console.log)
-         
+         */
     }
 
     render() {
