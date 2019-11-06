@@ -3,49 +3,41 @@ import { StyleSheet, Text, View } from 'react-native';
 import { getGitHubRepositoryCommits } from '../services/GitHubService';
 
 export default class GitHubCommitView extends Component {
-    
+
     constructor(props){
         super(props);
         this.state={
-            commitData:[]
+            commitData:[],
+            DEFAULT_REPO: props.repo 
         }
     }
 
     componentDidMount(){
-        
-         getGitHubRepositoryCommits('repos/ramanurs/githubreader').then((res) => {
+         getGitHubRepositoryCommits(this.state.DEFAULT_REPO).then((res) => {
             this.setState({ commitData: res })
         })
-
-       // this.setState({ commitData: data })
-        
-/*
-        fetch('https://api.github.com/repos/ramanurs/githubreader/commits')
-        .then(res => res.json())
-        .then((data) => {
-            this.setState({ commitData: data })
-        })
-        .catch(console.log)
-         */
     }
 
     render() {
         console.log("data : "+this.state.commitData);
        return (this.state.commitData.map(item =>
         <>
-            <Text style={styles.author}>
-                Author : {item.commit.author.name}
-            </Text>
-            <Text style={styles.messagevalue}>
-                Commit Message : {item.commit.message}
-            </Text>
-            <Text style={styles.sha}>
-                Commit# : {item.sha}
-            </Text>
-
             <Text style={styles.description}>
                 ______________________________________________
             </Text>
+            <Text style={styles.author}>
+                Author : {item.commit.author.name}
+            </Text>
+            <Text style={styles.messagekey}>
+                Commit# 
+            </Text>
+            <Text style={styles.messagevalue}>
+                {item.sha}
+            </Text>
+            <Text style={styles.messagekey}>
+                Commit Message : 
+            </Text>
+            <Text  style={styles.messagevalue}>{item.commit.message}</Text>
         </>
     )); 
     }
@@ -56,29 +48,18 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         marginTop: 60,
-    },shakey: {
-        marginBottom: 20,
-        fontSize: 20,
-        textAlign: 'left',
-        color: '#856565'
-    },
-    shavalue: {
-        marginBottom: 20,
-        fontSize: 15,
-        textAlign: 'left',
-        color: '#656565'
     },
     messagekey: {
         marginBottom: 20,
-        fontSize: 20,
+        fontSize: 14,
         textAlign: 'left',
-        color: '#656565'
+        color: 'black'
     },
     messagevalue: {
         marginBottom: 20,
-        fontSize: 12,
+        fontSize: 14,
         textAlign: 'left',
-        color: '#856565'
+        color: '#656565'
     },
 
     author: {

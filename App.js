@@ -1,33 +1,50 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, NavigatorIOS } from 'react-native';
-import Header from './app/components/Header'
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, Card, CardItem } from "native-base";
+import { StyleSheet, View, NavigatorIOS } from 'react-native';
+import { StatusBar } from "react-native";
+
 import GitHubCommitView from './app/components/GitHubCommitView';
 import GitHubRepoSearchView from './app/components/GitHubRepoSearchView';
 
 export default class App extends Component {
+  constructor(){
+    super();
+    this.state={
+      DEFAULT_REPO: 'repos/ramanurs/githubreader'
+    }
+  }
+
+  handleRepoSearch(){
+
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.body}>
-        <GitHubCommitView />
-        </View>
-      </View>    
+      <Container>
+        <Header>
+          <Body>
+            <Title>GitHub Commits Viewer</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content padder>
+          <Card>
+            <CardItem>
+              <Body>
+                <GitHubRepoSearchView repo={this.state.DEFAULT_REPO}/>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>Commits History:</Text>
+                <GitHubCommitView repo={this.state.DEFAULT_REPO}/>
+              </Body>
+            </CardItem>
+          </Card>
+        </Content>
+      </Container>
+
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center'
-  },
-  header: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#FFCE00',
-    marginLeft: 0,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
